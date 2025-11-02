@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<title>フォニックスカード｜名称 ↔ 記号</title>
+<style>
+body{font-family:-apple-system,"Hiragino Sans",Arial,sans-serif;background:#fff;text-align:center}
+h1{font-size:20px;margin-top:10px}
+table{border-collapse:separate;border-spacing:8px;margin:0 auto}
+th,td{border:none;vertical-align:top;text-align:center}
+th.header{background:#b7e3e4;font-size:16px;font-weight:bold;padding:6px 10px}
+th.vowel{background:#0d7b78;color:#fff;width:40px;height:60px;font-size:18px;border-radius:8px;vertical-align:middle}
+.card{width:200px;height:40px;perspective:600px;margin:6px auto;cursor:pointer}
+.inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s}
+.card.flipped .inner{transform:rotateY(180deg)}
+.front,.back{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;border:2px solid teal;border-radius:10px;background:#fffbea;font-weight:bold;box-sizing:border-box;backface-visibility:hidden}
+.back{transform:rotateY(180deg)}
+.ipa{color:#0077cc;font-size:14px}
+.red{color:#d00}
+</style></head><body>
+<h1>フォニックス母音カード（表＝名称／裏＝記号）</h1>
+<table>
+<tr><th></th><th class="header">短母音</th><th class="header">二重母音</th><th class="header">曖昧母音</th></tr>
+
+<tr><th class="vowel">A</th>
+<td><div class="card"><div class="inner">
+  <div class="front">short a</div>
+  <div class="back"><span class="ipa">/æ/</span></div>
+</div></div></td>
+<td>
+ <div class="card"><div class="inner"><div class="front">long a</div><div class="back"><span class="ipa">/eɪ/</span></div></div></div>
+ <div class="card"><div class="inner"><div class="front">ar sound</div><div class="back"><span class="ipa">/ɑːr/</span></div></div></div>
+</td>
+<td><div class="card"><div class="inner"><div class="front">schwa</div><div class="back"><span class="ipa">/ə/</span></div></div></div></td>
+</tr>
+
+<tr><th class="vowel">E</th>
+<td><div class="card"><div class="inner"><div class="front">short e</div><div class="back"><span class="ipa">/e/</span></div></div></div></td>
+<td>
+ <div class="card"><div class="inner"><div class="front">long e</div><div class="back"><span class="ipa">/iː/</span></div></div></div>
+ <div class="card"><div class="inner"><div class="front">er sound</div><div class="back"><span class="ipa">/ɝː/</span></div></div></div>
+</td>
+<td></td></tr>
+
+<tr><th class="vowel">I</th>
+<td><div class="card"><div class="inner"><div class="front">short i</div><div class="back"><span class="ipa">/ɪ/</span></div></div></div></td>
+<td><div class="card"><div class="inner"><div class="front">long i</div><div class="back"><span class="ipa">/aɪ/</span></div></div></div></td>
+<td></td></tr>
+
+<tr><th class="vowel">O</th>
+<td>
+ <div class="card"><div class="inner"><div class="front">short o</div><div class="back"><span class="ipa">/ɑ/</span></div></div></div>
+ <div class="card"><div class="inner"><div class="front">short oo</div><div class="back"><span class="ipa">/ʊ/</span></div></div></div>
+</td>
+<td>
+ <div class="card"><div class="inner"><div class="front">long o</div><div class="back"><span class="ipa">/oʊ/</span></div></div></div>
+ <div class="card"><div class="inner"><div class="front">long oo</div><div class="back"><span class="ipa">/uː/</span></div></div></div>
+ <div class="card"><div class="inner"><div class="front">ow sound</div><div class="back"><span class="ipa">/aʊ/</span></div></div></div>
+ <div class="card"><div class="inner"><div class="front">oi sound</div><div class="back"><span class="ipa">/ɔɪ/</span></div></div></div>
+ <div class="card"><div class="inner"><div class="front">or sound</div><div class="back"><span class="ipa">/ɔːr/</span></div></div></div>
+</td>
+<td></td></tr>
+
+<tr><th class="vowel">U</th>
+<td><div class="card"><div class="inner"><div class="front">short u</div><div class="back"><span class="ipa">/ʌ/</span></div></div></div></td>
+<td></td><td></td></tr>
+</table>
+<script>
+document.querySelectorAll(".card").forEach(c=>c.addEventListener("click",()=>c.classList.toggle("flipped")));
+</script></body></html>
