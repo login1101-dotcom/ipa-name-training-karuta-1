@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPA Vowel Card Demo</title>
+<style>
+  body {
+    font-family: -apple-system, "Hiragino Sans", Arial, sans-serif;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    height:100vh;background:#f8f8f8;
+  }
+  .card {width:250px;height:180px;perspective:1000px;margin:20px;}
+  .inner {width:100%;height:100%;position:relative;text-align:center;
+          transition:transform 0.6s;transform-style:preserve-3d;}
+  .card.flipped .inner {transform:rotateY(180deg);}
+  .front,.back {position:absolute;width:100%;height:100%;border-radius:12px;
+                backface-visibility:hidden;display:flex;flex-direction:column;
+                justify-content:center;align-items:center;font-weight:bold;font-size:20px;}
+  .front {background:#fff;border:3px solid #0d7b78;color:#0d7b78;}
+  .back {background:#0d7b78;color:#fff;transform:rotateY(180deg);}
+  button {margin-top:15px;padding:6px 14px;font-size:16px;border:none;border-radius:8px;
+          background:#f2a531;color:white;cursor:pointer;}
+  .redvowel { color:#d00; font-weight:bold; }
+</style>
+</head>
+<body>
+
+<div class="card" id="vowel-card">
+  <div class="inner">
+    <div class="front">
+      <div>short <span class="redvowel">a</span></div>
+      <div>/<span class="redvowel">æ</span>/</div>
+      <div>c<span class="redvowel">a</span>t</div>
+    </div>
+    <div class="back">
+      <div>Tap to flip back!</div>
+    </div>
+  </div>
+</div>
+
+<button id="flip-btn">カードを裏返す</button>
+
+<script>
+document.getElementById("flip-btn").addEventListener("click", () => {
+  document.getElementById("vowel-card").classList.toggle("flipped");
+});
+</script>
+
+</body>
+</html>

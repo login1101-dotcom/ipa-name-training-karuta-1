@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPA Name Training Karuta</title>
+<style>
+body {
+  font-family: -apple-system, "Hiragino Sans", Arial, sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background: #fafafa;
+  height: 100vh;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 180px;
+  height: 150px;
+  perspective: 1000px;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #0d7b78;
+  border-radius: 12px;
+  font-size: 20px;
+  background: #fff;
+}
+
+.flip-front { color: #0d7b78; font-weight: bold; }
+.flip-back {
+  transform: rotateY(180deg);
+  background: #f5fffa;
+  color: #000;
+}
+.redvowel { color: #d00; font-weight: bold; }
+</style>
+</head>
+
+<body>
+<div id="card-container"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

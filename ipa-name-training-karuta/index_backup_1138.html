@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPA Name Training Karuta</title>
+<style>
+  body {
+    font-family:-apple-system,"Hiragino Sans",Arial,sans-serif;
+    color:#000;background:#fff;
+    margin:0;padding:0;
+    display:flex;flex-direction:column;align-items:center;
+    transform:scale(0.8);        /* 👈 PCでは80%縮小 */
+    transform-origin:top center;
+  }
+  h1 { text-align:center;font-size:22px;font-weight:bold;margin:8px 0; }
+  table { border-collapse:separate;border-spacing:0;width:min(95vw,700px);margin:0 auto;table-layout:auto; }
+  th,td { border:1px solid #000;text-align:left;vertical-align:top;font-size:16px;line-height:1.3;padding:5px 10px;background:#fffef3; }
+  th.vowel {
+    background:#0d7b78;color:#fff;font-weight:bold;text-align:center;
+    font-size:18px;width:40px;min-width:30px;padding:0 4px;vertical-align:middle;
+  }
+  th.header { background:#d8f5d0;text-align:center;font-size:18px;font-weight:bold; }
+  .select-btn {
+    display:inline-block;background:#fff;border:2px solid #f2a531;border-radius:6px;
+    padding:3px 8px;margin-bottom:3px;cursor:pointer;font-size:14px;font-weight:bold;
+  }
+  .select-btn.selected { background:#0d7b78;color:#fff;border-color:#0d7b78; }
+  .ipa { color:#0066cc;font-weight:bold;font-size:16px; }
+  .redvowel { color:#d00;font-weight:bold; }
+  .next-btn {
+    margin-top:16px;background:#0d7b78;color:#fff;
+    border:none;padding:8px 28px;font-size:18px;border-radius:8px;cursor:pointer;font-weight:bold;
+  }
+  .next-btn:hover { background:#0b5f5d; }
+
+  /* スマホでは縮小を解除して見やすく */
+  @media (max-width:600px) {
+    body { transform:none; }
+    h1 { font-size:18px; }
+    th,td { font-size:14px;padding:4px 6px; }
+    .select-btn { font-size:12px;padding:2px 6px; }
+    .ipa { font-size:14px; }
+  }
+</style>
+</head>
+
+<body>
+<h1>IPA Name Training Karuta</h1>
+<table id="vowel-table" border="1"></table>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/quiz.js"></script>
+  <h1>苦手な母音を選択し、クイズに進んでください</h1>
+  <h1>IPA-フォニックス母音表</h1>
+
+  <table>
+    <tr><th></th><th class="header">短母音</th><th class="header">二重母音</th><th class="header">曖昧母音</th></tr>
+
+    <!-- A -->
+    <tr>
+      <th class="vowel">A</th>
+      <td>
+        <button class="select-btn">short a <span class="ipa">/æ/</span></button><br>
+        - c<span class="redvowel">a</span>mp, b<span class="redvowel">a</span>th, f<span class="redvowel">a</span>n
+      </td>
+      <td>
+        <button class="select-btn">long a <span class="ipa">/eɪ/</span></button><br>
+        - f<span class="redvowel">a</span>te, th<span class="redvowel">ey</span>, gr<span class="redvowel">ea</span>t<br>
+        <button class="select-btn">ar sound <span class="ipa">/ɑːr/</span></button><br>
+        - c<span class="redvowel">ar</span>, <span class="redvowel">ar</span>t, m<span class="redvowel">ar</span>k
+      </td>
+      <td>
+        <button class="select-btn">Schwa <span class="ipa">/ə/</span></button><br>
+        - <span class="redvowel">a</span>bout, s<span class="redvowel">u</span>pport, p<span class="redvowel">e</span>ncil
+      </td>
+    </tr>
+
+    <!-- E -->
+    <tr>
+      <th class="vowel">E</th>
+      <td>
+        <button class="select-btn">short e <span class="ipa">/e/</span></button><br>
+        - l<span class="redvowel">e</span>t, g<span class="redvowel">e</span>t, <span class="redvowel">e</span>gg
+      </td>
+      <td>
+        <button class="select-btn">long e <span class="ipa">/iː/</span></button><br>
+        - f<span class="redvowel">ee</span>, sh<span class="redvowel">e</span>, bel<span class="redvowel">ie</span>ve<br>
+        <button class="select-btn">er sound <span class="ipa">/ɝː/</span></button><br>
+        - b<span class="redvowel">ir</span>d, t<span class="redvowel">er</span>m, h<span class="redvowel">ur</span>t
+      </td>
+      <td></td>
+    </tr>
+
+    <!-- I -->
+    <tr>
+      <th class="vowel">I</th>
+      <td>
+        <button class="select-btn">short i <span class="ipa">/ɪ/</span></button><br>
+        - f<span class="redvowel">i</span>t, <span class="redvowel">i</span>ncome, <span class="redvowel">i</span>t
+      </td>
+      <td>
+        <button class="select-btn">long i <span class="ipa">/aɪ/</span></button><br>
+        - <span class="redvowel">eye</span>, <span class="redvowel">ir</span>on, <span class="redvowel">i</span>dea
+      </td>
+      <td></td>
+    </tr>
+
+    <!-- O -->
+    <tr>
+      <th class="vowel">O</th>
+      <td>
+        <button class="select-btn">short o <span class="ipa">/ɑ/</span></button><br>
+        - h<span class="redvowel">o</span>t, n<span class="redvowel">o</span>t, l<span class="redvowel">o</span>ck<br>
+        <button class="select-btn">short oo <span class="ipa">/ʊ/</span></button><br>
+        - b<span class="redvowel">oo</span>k, sh<span class="redvowel">ou</span>ld, p<span class="redvowel">u</span>t
+      </td>
+      <td>
+        <button class="select-btn">long o <span class="ipa">/oʊ/</span></button><br>
+        - n<span class="redvowel">o</span>te, n<span class="redvowel">o</span>, sl<span class="redvowel">ow</span><br>
+        <button class="select-btn">long oo <span class="ipa">/uː/</span></button><br>
+        - t<span class="redvowel">oo</span>, l<span class="redvowel">oo</span>se, thr<span class="redvowel">ou</span>gh<br>
+        <button class="select-btn">ow sound <span class="ipa">/aʊ/</span></button><br>
+        - h<span class="redvowel">ou</span>se, <span class="redvowel">ou</span>t, c<span class="redvowel">ou</span>nt<br>
+        <button class="select-btn">oi sound <span class="ipa">/ɔɪ/</span></button><br>
+        - b<span class="redvowel">oy</span>, j<span class="redvowel">oy</span>, j<span class="redvowel">oi</span>n<br>
+        <button class="select-btn">or sound <span class="ipa">/ɔːr/</span></button><br>
+        - f<span class="redvowel">or</span>, s<span class="redvowel">or</span>t, st<span class="redvowel">or</span>m
+      </td>
+      <td></td>
+    </tr>
+
+    <!-- U -->
+    <tr>
+      <th class="vowel">U</th>
+      <td>
+        <button class="select-btn">short u <span class="ipa">/ʌ/</span></button><br>
+        - b<span class="redvowel">u</span>t, f<span class="redvowel">u</span>n, c<span class="redvowel">o</span>me
+      </td>
+      <td></td><td></td>
+    </tr>
+  </table>
+
+  <button class="next-btn">クイズに進む ▶</button>
+
+  <script>
+    const buttons=document.querySelectorAll('.select-btn');
+    buttons.forEach(btn=>btn.addEventListener('click',()=>btn.classList.toggle('selected')));
+    document.querySelector('.next-btn').addEventListener('click',()=>{
+      const selected=[];
+      buttons.forEach(btn=>{
+        if(btn.classList.contains('selected')){
+          const name=(btn.childNodes[0]?.textContent||'').trim();
+          const ipa=(btn.querySelector('.ipa')?.textContent||'').trim();
+          selected.push({name,ipa});
+        }
+      });
+      if(!selected.length){alert("母音を1つ以上選択してください。");return;}
+      localStorage.setItem("selectedVowels",JSON.stringify(selected));
+      location.href="quiz.html";
+    });
+  </script>
+</body>
+</html>

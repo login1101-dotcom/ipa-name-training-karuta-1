@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>IPA Name Training Karuta</title>
+<style>
+  body {font-family:-apple-system,"Hiragino Sans",Arial,sans-serif;text-align:center;background:#fffaf0;margin:0;padding:30px;}
+  h1 {font-size:28px;margin-bottom:10px;}
+  .mode-bar {margin:10px 0 0; display:flex; gap:10px; justify-content:center;}
+  .mode-btn {background:#eee; border:none; padding:10px 18px; font-size:16px; border-radius:8px; cursor:pointer;}
+  .mode-btn.active {background:#f2a531; color:#fff;}
+  .question {font-size:24px;margin:20px 0;}
+  .options {display:grid;grid-template-columns:1fr 1fr;gap:10px;justify-content:center;width:60%;margin:0 auto;}
+  button.choice {padding:12px;font-size:18px;border:2px solid #ccc;border-radius:8px;background:#fff;cursor:pointer;transition:background 0.2s;}
+  button.choice:hover {background:#e0f7fa;}
+  .correct {background:#a5d6a7 !important;border-color:#81c784 !important;}
+  .wrong {background:#ef9a9a !important;border-color:#e57373 !important;}
+  .back-wrap {margin-top:20px;}
+  .back-btn {background:#0d7b78;color:#fff;border:none;padding:10px 30px;font-size:20px;border-radius:8px;cursor:pointer;}
+</style>
+</head>
+
+<body>
+  <h1>IPA Name Training Karuta</h1>
+
+  <!-- 上部：モード切替2ボタン -->
+  <div class="mode-bar">
+    <button id="btnIpaToName" class="mode-btn">発音記号→名称</button>
+    <button id="btnNameToIpa" class="mode-btn">名称→発音記号</button>
+  </div>
+
+  <div class="question" id="question">読み込み中...</div>
+  <div class="options" id="options"></div>
+
+  <!-- 下：戻る -->
+  <div class="back-wrap">
+    <button class="back-btn" onclick="location.href='index.html'">戻る</button>
+  </div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem("selectedVowels") || "[]");
+    const q = document.getElementById("question");
+    const opts = document.getElementById("options");
+    const btnIpaToName = document.getElementById("btnIpaToName");
+    const btnNameToIpa = document.getElementById("btnNameToIpa");
+
+    // デフォルトは「名称→発音記号」
+    let mode = "nameToIPA"; // "ipaToName" or "nameToIPA"
+
+    const allIPA   = ["/æ/","/eɪ/","/ɑːr/","/ə/","/e/","/iː/","/ɝː/","/ɪ/","/aɪ/","/ɑ/","/ʊ/","/uː/","/oʊ/","/aʊ/","/ɔɪ/","/ɔːr/","/ʌ/"];
+    const allNames = ["short a","long a","ar sound","Schwa","short e","long e","er sound","short i","long i","short o","short oo","long oo","long o","ow sound","oi sound","or sound","short u"];
+
+    function updateModeButtons(){
+      btnIpaToName.classList.toggle("active", mode==="ipaToName");
+      btnNameToIpa.classList.toggle("active", mode==="nameToIPA");
+    }
+
+    btnIpaToName.onclick = () => { mode = "ipaToName"; updateModeButtons(); showQuestion(); };
+    btnNameToIpa.onclick = () => { mode = "nameToIPA"; updateModeButtons(); showQuestion(); };
+
+    if (!data.length) {
+      q.textContent = "母音が選択されていません。";
+    } else {
+      let current = 0;
+      updateModeButtons();
+      showQuestion();
+
+      function showQuestion() {
+        const item = data[current];
+        q.innerHTML = (mode==="nameToIPA")
+          ? `この母音のIPA記号は？<br><b>${item.name}</b>`
+          : `このIPA記号の名称は？<br><b>${item.ipa}</b>`;
+        opts.innerHTML = "";
+
+        const correct = (mode==="nameToIPA") ? item.ipa : item.name;
+        const pool    = (mode==="nameToIPA") ? allIPA   : allNames;
+
+        // 重複なし4択
+        const set = new Set([correct]);
+        while (set.size < 4) set.add(pool[Math.floor(Math.random()*pool.length)]);
+        const choices = Array.from(set).sort(()=>Math.random()-0.5);
+
+        for (const c of choices) {
+          const b = document.createElement("button");
+          b.className = "choice";
+          b.textContent = c;
+          b.onclick = () => {
+            if (c === correct) {
+              b.classList.add("correct");
+              setTimeout(() => {
+                current = (current + 1) % data.length;
+                showQuestion();
+              }, 200);
+            } else {
+              b.classList.add("wrong");
+            }
+          };
+          opts.appendChild(b);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
